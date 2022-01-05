@@ -1,5 +1,9 @@
 let controller = {
     home: (req, res, next) => {
+        if(!req.session.cart){
+            req.session.cart = [];
+        } 
+
         res.render('index');
     },
     contacto: (req, res, next) => {

@@ -26,9 +26,17 @@ module.exports = {
     // },
 	admin: (req, res) => {
 		db.Product.findAll({
-			include: [{ all: true }]
+			include: [
+                {
+                    association : 'subcategories',
+                    include : [
+                        {association : 'category'}
+                    ]
+                }
+            ]
 		})
 			.then((products) => {
+
             return res.render('admin/admin', {products})
         })
 	},
